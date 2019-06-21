@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-import { AUTHENTICATE_API_URL } from "../../../src/constants";
+import { AUTHENTICATE_API_URL, SERVER_URL } from "../../../src/constants";
 import {
   LOGIN_BUTTON,
   PASSWORD_PLACEHOLDER,
@@ -17,6 +17,13 @@ context("Authentication", () => {
 
   const username = "stefano@conio.com";
   const password = "mysupersecretpassword";
+
+  before(() => {
+    cy.request("POST", `${SERVER_URL}/e2e-tests/seed-data`, {
+      username,
+      password
+    });
+  });
 
   it("should work with the right credentials", () => {
     // intercepts every auth AJAX request

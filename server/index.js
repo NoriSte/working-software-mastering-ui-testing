@@ -20,4 +20,9 @@ app.post("/api/authentication", function(req, res) {
   res.send({ token: Date.now() });
 });
 
+app.post("/e2e-tests/seed-data", function(req, res) {
+  // a fake data seeder
+  res.send();
+});
+
 app.listen(3001);
