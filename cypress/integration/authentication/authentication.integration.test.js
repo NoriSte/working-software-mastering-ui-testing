@@ -3,11 +3,13 @@
 import { AUTHENTICATE_API_URL } from "../../../src/constants";
 import {
   CREATE_TODO_BUTTON,
+  GENERIC_ERROR,
   LOADING,
   LOGIN_BUTTON,
   LONG_WAITING,
   PASSWORD_PLACEHOLDER,
   SUCCESS_FEEDBACK,
+  UNAUTHORIZED_ERROR,
   USERNAME_PLACEHOLDER
 } from "../../../src/strings";
 
@@ -18,9 +20,10 @@ context("Authentication", () => {
     cy.visit("/");
   });
 
-  it("should work with the right credentials", () => {
-    const username = "stefano@conio.com";
-    const password = "mysupersecretpassword";
+  const username = "stefano@conio.com";
+  const password = "mysupersecretpassword";
+
+  it.skip("should work with the right credentials", () => {
     cy.route({
       method: "POST",
       response: "fixture:authentication/authentication-success.json",
@@ -46,9 +49,7 @@ context("Authentication", () => {
     cy.getByText(CREATE_TODO_BUTTON).should("be.visible");
   });
 
-  it.only("should alert the user it the login lasts long", () => {
-    const username = "stefano@conio.com";
-    const password = "mysupersecretpassword";
+  it("should alert the user it the login lasts long", () => {
     cy.route({
       method: "POST",
       response: {},
@@ -62,5 +63,35 @@ context("Authentication", () => {
 
     cy.getByText(LOADING).should("be.visible");
     cy.getByText(LONG_WAITING).should("be.visible");
+  });
+
+  it("should alert the user it the credentials are wrong", () => {
+    cy.route({
+      method: "POST",
+      response: {},
+      url: `**${AUTHENTICATE_API_URL}`,
+      status: 401
+    }).as("auth-xhr");
+
+    cy.getByPlaceholderText(USERNAME_PLACEHOLDER).type(`${username}`);
+    cy.getByPlaceholderText(PASSWORD_PLACEHOLDER).type(`${password}`);
+    cy.getByText(LOGIN_BUTTON).click();
+
+    cy.getByText(UNAUTHORIZED_ERROR).should("be.visible");
+  });
+
+  it("should alert the user it the server does not work", () => {
+    cy.route({
+      method: "POST",
+      response: {},
+      url: `**${AUTHENTICATE_API_URL}`,
+      status: 500
+    }).as("auth-xhr");
+
+    cy.getByPlaceholderText(USERNAME_PLACEHOLDER).type(`${username}`);
+    cy.getByPlaceholderText(PASSWORD_PLACEHOLDER).type(`${password}`);
+    cy.getByText(LOGIN_BUTTON).click();
+
+    cy.getByText(GENERIC_ERROR).should("be.visible");
   });
 });
