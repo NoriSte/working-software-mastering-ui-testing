@@ -15,6 +15,10 @@ input::placeholder {
   font-size: 1rem;
 }
 
+button {
+  font-size: 1.3rem;
+}
+
 .App-logo {
   height: 30vmin;
   pointer-events: none;

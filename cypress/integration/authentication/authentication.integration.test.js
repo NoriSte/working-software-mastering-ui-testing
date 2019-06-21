@@ -2,7 +2,6 @@
 
 import { AUTHENTICATE_API_URL } from "../../../src/constants";
 import {
-  CREATE_TODO_BUTTON,
   GENERIC_ERROR,
   LOADING,
   LOGIN_BUTTON,
@@ -23,7 +22,7 @@ context("Authentication", () => {
   const username = "stefano@conio.com";
   const password = "mysupersecretpassword";
 
-  it.skip("should work with the right credentials", () => {
+  it("should work with the right credentials", () => {
     cy.route({
       method: "POST",
       response: "fixture:authentication/authentication-success.json",
@@ -46,10 +45,10 @@ context("Authentication", () => {
     });
 
     cy.getByText(SUCCESS_FEEDBACK).should("be.visible");
-    cy.getByText(CREATE_TODO_BUTTON).should("be.visible");
   });
 
   it("should alert the user it the login lasts long", () => {
+    cy.clock();
     cy.route({
       method: "POST",
       response: {},
@@ -60,6 +59,7 @@ context("Authentication", () => {
     cy.getByPlaceholderText(USERNAME_PLACEHOLDER).type(`${username}`);
     cy.getByPlaceholderText(PASSWORD_PLACEHOLDER).type(`${password}`);
     cy.getByText(LOGIN_BUTTON).click();
+    cy.tick(1000);
 
     cy.getByText(LOADING).should("be.visible");
     cy.getByText(LONG_WAITING).should("be.visible");
