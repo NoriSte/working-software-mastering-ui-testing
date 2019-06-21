@@ -1058,7 +1058,7 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-9.0.1.tgz#c27b391d8457d1e893f1eddeaf5e5412d12ffbb5"
   integrity sha512-6It2EVfGskxZCQhuykrfnALg7oVeiI6KclWSmGDqB0AiInVrTGB9Jp9i4/Ad21u9Jde/voVQz6eFX/eSg/UsPA==
 
-"@cypress/browserify-preprocessor@^2.1.1":
+"@cypress/browserify-preprocessor@2.1.1":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@cypress/browserify-preprocessor/-/browserify-preprocessor-2.1.1.tgz#93e7c1228fee9dea9e80a1ccf0dd8cca1ffcbad8"
   integrity sha512-S+0bzZbRsiFbrLkEygu5D0958z4ejio7hWxnO5MoSqD7SmZOmGRpjuZ9RaGcDmL6RWnklNjn8DkpP2s368qCKA==
@@ -1394,7 +1394,7 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
-"@testing-library/cypress@^4.0.3":
+"@testing-library/cypress@4.0.3":
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/@testing-library/cypress/-/cypress-4.0.3.tgz#3828836afeed183b1edb91af78931a7f783e23a2"
   integrity sha512-a6uwXfML7fKv/6SLMSLofzkYrBhZfUVg090dmg0je+F8uj/H01pB/BDalvIjwDKqXjs5Yasxseuzi8SUIGJ6jQ==
@@ -2066,7 +2066,7 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
   integrity sha512-ReZxvNHIOv88FlT7rxcXIIC0fPt4KZqZbOlivyWtXLt8ESx84zd3kMC6iK5jVeS2qt+g7ftS7ye4fi06X5rtRQ==
 
-axios@^0.19.0:
+axios@0.19.0:
   version "0.19.0"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.0.tgz#8e09bff3d9122e133f7b8101c8fbdd00ed3d2ab8"
   integrity sha512-1uvKqKQta3KBxIz14F2v06AEHZ/dIoeKfbTRkK1E5oqjDnuEerLmYTgJB5AiQZHJcljpg1TuRzdjDR06qNk0DQ==
@@ -3240,7 +3240,7 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
 
-cors@^2.8.5:
+cors@2.8.5:
   version "2.8.5"
   resolved "https://registry.yarnpkg.com/cors/-/cors-2.8.5.tgz#eac11da51592dd86b9f06f6e7ac293b3df875d29"
   integrity sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
@@ -3542,7 +3542,7 @@ cyclist@~0.2.2:
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
   integrity sha1-GzN5LhHpFKL9bW7WRHRkRE5fpkA=
 
-cypress-skip-and-only-ui@^1.2.0:
+cypress-skip-and-only-ui@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/cypress-skip-and-only-ui/-/cypress-skip-and-only-ui-1.2.0.tgz#67d0a31b264c9a626a05d286eebea67f117b7485"
   integrity sha512-JyFC+GKUlC8GQuN/tWxIokP4Z6i2fMgiy9XVfLw+8zeZzhVqO/Tb1BFHdoVKLZIPshZ++jkCMPdRvuC7JdkDSA==
@@ -3552,7 +3552,7 @@ cypress-skip-and-only-ui@^1.2.0:
     react "16.8.6"
     react-dom "16.8.6"
 
-cypress-watch-and-reload@^1.2.7:
+cypress-watch-and-reload@1.2.7:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/cypress-watch-and-reload/-/cypress-watch-and-reload-1.2.7.tgz#c04385ce67a2c399dd47bb33ef3a219ac08fb384"
   integrity sha512-3mMRChUMzfDM5o5JxuclNospaWDiqoQceX/SIF4TfQT4AS44Din6WN9tkRPbgjpXnhA/jt1ShZ4nmU8IfppbhQ==
@@ -3561,7 +3561,7 @@ cypress-watch-and-reload@^1.2.7:
     chokidar "2.1.6"
     ws "7.0.1"
 
-cypress@^3.3.1:
+cypress@3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/cypress/-/cypress-3.3.1.tgz#8a127b1d9fa74bff21f111705abfef58d595fdef"
   integrity sha512-JIo47ZD9P3jAw7oaK7YKUoODzszJbNw41JmBrlMMiupHOlhmXvZz75htuo7mfRFPC9/1MDQktO4lX/V2+a6lGQ==
@@ -4444,6 +4444,42 @@ expect@^24.8.0:
     jest-message-util "^24.8.0"
     jest-regex-util "^24.3.0"
 
+express@4.17.1:
+  version "4.17.1"
+  resolved "https://registry.yarnpkg.com/express/-/express-4.17.1.tgz#4491fc38605cf51f8629d39c2b5d026f98a4c134"
+  integrity sha512-mHJ9O79RqluphRrcw2X/GTh3k9tVv8YcoyY4Kkh4WDMUYKRZUq0h1o0w2rrrxBqM7VoeUVqgb27xlEMXTnYt4g==
+  dependencies:
+    accepts "~1.3.7"
+    array-flatten "1.1.1"
+    body-parser "1.19.0"
+    content-disposition "0.5.3"
+    content-type "~1.0.4"
+    cookie "0.4.0"
+    cookie-signature "1.0.6"
+    debug "2.6.9"
+    depd "~1.1.2"
+    encodeurl "~1.0.2"
+    escape-html "~1.0.3"
+    etag "~1.8.1"
+    finalhandler "~1.1.2"
+    fresh "0.5.2"
+    merge-descriptors "1.0.1"
+    methods "~1.1.2"
+    on-finished "~2.3.0"
+    parseurl "~1.3.3"
+    path-to-regexp "0.1.7"
+    proxy-addr "~2.0.5"
+    qs "6.7.0"
+    range-parser "~1.2.1"
+    safe-buffer "5.1.2"
+    send "0.17.1"
+    serve-static "1.14.1"
+    setprototypeof "1.1.1"
+    statuses "~1.5.0"
+    type-is "~1.6.18"
+    utils-merge "1.0.1"
+    vary "~1.1.2"
+
 express@^4.16.2:
   version "4.16.4"
   resolved "https://registry.yarnpkg.com/express/-/express-4.16.4.tgz#fddef61926109e24c515ea97fd2f1bdbf62df12e"
@@ -4477,42 +4513,6 @@ express@^4.16.2:
     setprototypeof "1.1.0"
     statuses "~1.4.0"
     type-is "~1.6.16"
-    utils-merge "1.0.1"
-    vary "~1.1.2"
-
-express@^4.17.1:
-  version "4.17.1"
-  resolved "https://registry.yarnpkg.com/express/-/express-4.17.1.tgz#4491fc38605cf51f8629d39c2b5d026f98a4c134"
-  integrity sha512-mHJ9O79RqluphRrcw2X/GTh3k9tVv8YcoyY4Kkh4WDMUYKRZUq0h1o0w2rrrxBqM7VoeUVqgb27xlEMXTnYt4g==
-  dependencies:
-    accepts "~1.3.7"
-    array-flatten "1.1.1"
-    body-parser "1.19.0"
-    content-disposition "0.5.3"
-    content-type "~1.0.4"
-    cookie "0.4.0"
-    cookie-signature "1.0.6"
-    debug "2.6.9"
-    depd "~1.1.2"
-    encodeurl "~1.0.2"
-    escape-html "~1.0.3"
-    etag "~1.8.1"
-    finalhandler "~1.1.2"
-    fresh "0.5.2"
-    merge-descriptors "1.0.1"
-    methods "~1.1.2"
-    on-finished "~2.3.0"
-    parseurl "~1.3.3"
-    path-to-regexp "0.1.7"
-    proxy-addr "~2.0.5"
-    qs "6.7.0"
-    range-parser "~1.2.1"
-    safe-buffer "5.1.2"
-    send "0.17.1"
-    serve-static "1.14.1"
-    setprototypeof "1.1.1"
-    statuses "~1.5.0"
-    type-is "~1.6.18"
     utils-merge "1.0.1"
     vary "~1.1.2"
 
@@ -9064,7 +9064,7 @@ react-dev-utils@^9.0.1:
     strip-ansi "5.2.0"
     text-table "0.2.0"
 
-react-dom@16.8.6, react-dom@^16.8.6:
+react-dom@16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.6.tgz#71d6303f631e8b0097f56165ef608f051ff6e10f"
   integrity sha512-1nL7PIq9LTL3fthPqwkvr2zY7phIPjYrT0jp4HjyEQrEROnw4dG41VVwi/wfoCneoleqrNX7iAD+pXebJZwrwA==
@@ -9144,7 +9144,7 @@ react-scripts@3.0.1:
   optionalDependencies:
     fsevents "2.0.6"
 
-react@16.8.6, react@^16.8.6:
+react@16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
   integrity sha512-pC0uMkhLaHm11ZSJULfOBqV4tIZkx87ZLvbbQYunNixAAvjnC+snJCg0XQXn9VIsttVsbZP/H/ewzgsd5fxKXw==
@@ -10115,7 +10115,7 @@ stack-utils@^1.0.1:
   resolved "https://registry.yarnpkg.com/stack-utils/-/stack-utils-1.0.2.tgz#33eba3897788558bebfc2db059dc158ec36cebb8"
   integrity sha512-MTX+MeG5U994cazkjd/9KNAapsHnibjMLnfXodlkXw76JEea0UiNzrqidzo1emMwk7w5Qhc9jd4Bn9TBb1MFwA==
 
-start-server-and-test@^1.9.1:
+start-server-and-test@1.9.1:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/start-server-and-test/-/start-server-and-test-1.9.1.tgz#401fcf869c2a10b7d224a6ef2cfc38e2a69954a2"
   integrity sha512-vRtUxxW34Li+EvemuWtgASyR2KBE+DPoEJ/l5REe+cKxm31jadGm1PSDVBronqQVsvhncRGm4iZc53pFH+FNEA==
