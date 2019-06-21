@@ -4,6 +4,7 @@ var express = require("express");
 var cors = require("cors");
 var app = express();
 
+app.use(express.json());
 app.use(
   cors({
     origin: "*"
@@ -17,7 +18,12 @@ app.get("/", function(req, res) {
 
 app.post("/api/authentication", function(req, res) {
   // the most ridiculous authentication...
-  res.send({ token: Date.now() });
+  if (req.body.username === "stefano@conio.com") {
+    res.send({ token: Date.now() });
+  } else {
+    res.status(401);
+    res.send({});
+  }
 });
 
 app.post("/e2e-tests/seed-data", function(req, res) {
