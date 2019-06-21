@@ -2,6 +2,7 @@ import Axios from "axios";
 import React from "react";
 import "./App.css";
 import { AUTHENTICATE_API_URL, SERVER_URL } from "./constants";
+import logoWS from "./logo-ws.svg";
 import logo from "./logo.svg";
 import {
   GENERIC_ERROR,
@@ -51,6 +52,9 @@ function App() {
 
   return (
     <div className="App">
+      <header className="App-header-ws">
+        <img src={logoWS} className="App-logo" alt="logo" />
+      </header>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
