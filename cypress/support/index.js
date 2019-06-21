@@ -20,3 +20,4 @@ import "./commands";
 // require('./commands')
 
 require("cypress-watch-and-reload/support");
+require("cypress-skip-and-only-ui/support");

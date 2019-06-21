@@ -7,6 +7,7 @@ import {
   GENERIC_ERROR,
   LOADING,
   LOGIN_BUTTON,
+  LONG_WAITING,
   PASSWORD_PLACEHOLDER,
   SUCCESS_FEEDBACK,
   UNAUTHORIZED_ERROR,
@@ -19,10 +20,12 @@ function App() {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState("");
   const [success, setSuccess] = React.useState(false);
+  const [longWaiting, setLongWaiting] = React.useState(false);
 
   const onLoginClick = async () => {
     setLoading(true);
     let response;
+    const timeoutId = setTimeout(() => setLongWaiting(true), 1000);
     try {
       response = await Axios.post(AUTHENTICATE_API_URL, {
         username,
@@ -33,6 +36,8 @@ function App() {
       setSuccess(false);
     }
     setLoading(false);
+    setLongWaiting(false);
+    clearTimeout(timeoutId);
 
     // success management
     if (response && response.status === 200) {
@@ -59,8 +64,12 @@ function App() {
           onChange={e => setPassword(e.target.value)}
         />
         <button onClick={onLoginClick}>{LOGIN_BUTTON}</button>
-        {loading && <p>{LOADING}</p>}
-        {success && <p>{SUCCESS_FEEDBACK}</p>}
+        <span>
+          {loading && LOADING}
+          {success && SUCCESS_FEEDBACK}
+          {error}
+        </span>
+        <span>{longWaiting && LONG_WAITING}</span>
       </section>
     </div>
   );

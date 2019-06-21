@@ -10,9 +10,9 @@
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
-require('cypress-watch-and-reload/plugins')
+require("cypress-watch-and-reload/plugins");
+const task = require("cypress-skip-and-only-ui/task");
 
 module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
-}
+  on("task", task);
+};

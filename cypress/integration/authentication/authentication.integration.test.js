@@ -3,7 +3,9 @@
 import { AUTHENTICATE_API_URL } from "../../../src/constants";
 import {
   CREATE_TODO_BUTTON,
+  LOADING,
   LOGIN_BUTTON,
+  LONG_WAITING,
   PASSWORD_PLACEHOLDER,
   SUCCESS_FEEDBACK,
   USERNAME_PLACEHOLDER
@@ -42,5 +44,23 @@ context("Authentication", () => {
 
     cy.getByText(SUCCESS_FEEDBACK).should("be.visible");
     cy.getByText(CREATE_TODO_BUTTON).should("be.visible");
+  });
+
+  it.only("should alert the user it the login lasts long", () => {
+    const username = "stefano@conio.com";
+    const password = "mysupersecretpassword";
+    cy.route({
+      method: "POST",
+      response: {},
+      url: `**${AUTHENTICATE_API_URL}`,
+      delay: 20000
+    }).as("auth-xhr");
+
+    cy.getByPlaceholderText(USERNAME_PLACEHOLDER).type(`${username}`);
+    cy.getByPlaceholderText(PASSWORD_PLACEHOLDER).type(`${password}`);
+    cy.getByText(LOGIN_BUTTON).click();
+
+    cy.getByText(LOADING).should("be.visible");
+    cy.getByText(LONG_WAITING).should("be.visible");
   });
 });
