@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import logo from "./logo.svg";
+import { LOGIN_BUTTON, PASSWORD_PLACEHOLDER, USERNAME_PLACEHOLDER } from "./strings";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      <section className="App-body">
+        <span>Please type</span>
+        <input placeholder={USERNAME_PLACEHOLDER} />
+        <input placeholder={PASSWORD_PLACEHOLDER} type="password" />
+        <button>{LOGIN_BUTTON}</button>
+      </section>
     </div>
   );
 }

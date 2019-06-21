@@ -1,11 +1,17 @@
 /// <reference types="Cypress" />
 
-import { CREATE_TODO_BUTTON, SUCCESS_FEEDBACK } from "../../../src/strings";
-import { AUTHENTICATE_API_URL } from "../../src/constants";
-import { LOGIN_BUTTON, PASSWORD_PLACEHOLDER, USERNAME_PLACEHOLDER } from "../../src/strings";
+import { AUTHENTICATE_API_URL } from "../../../src/constants";
+import {
+  CREATE_TODO_BUTTON,
+  LOGIN_BUTTON,
+  PASSWORD_PLACEHOLDER,
+  SUCCESS_FEEDBACK,
+  USERNAME_PLACEHOLDER
+} from "../../../src/strings";
 
 context("Authentication", () => {
   beforeEach(() => {
+    cy.viewport(300, 600);
     cy.server();
     cy.visit("/");
   });
@@ -21,15 +27,15 @@ context("Authentication", () => {
 
     cy.getByPlaceholderText(USERNAME_PLACEHOLDER)
       .should("be.visible")
-      .type(`${username}{tab}`);
+      .type(`${username}`);
     cy.getByPlaceholderText(PASSWORD_PLACEHOLDER)
       .should("be.visible")
-      .type(`${password}{tab}`);
+      .type(`${password}`);
     cy.getByText(LOGIN_BUTTON)
       .should("be.visible")
-      .type("pwd{tab}");
+      .click();
 
-    cy.wait("auth-xhr").then(xhr => {
+    cy.wait("@auth-xhr").then(xhr => {
       expect(xhr)
         .its("request.body")
         .to.have.property("username", username);
