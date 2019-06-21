@@ -19,6 +19,7 @@ context("Authentication", () => {
   const password = "mysupersecretpassword";
 
   it("should work with the right credentials", () => {
+    // intercepts every auth AJAX request
     cy.route({
       method: "POST",
       url: `**${AUTHENTICATE_API_URL}`
@@ -34,6 +35,7 @@ context("Authentication", () => {
       .should("be.visible")
       .click();
 
+    // checks the auth AJAX response payload
     cy.wait("@auth-xhr").then(xhr => {
       expect(xhr.status).to.equal(200);
       expect(xhr.response.body).to.have.property("token");

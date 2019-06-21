@@ -1,7 +1,7 @@
 import Axios from "axios";
 import React from "react";
 import "./App.css";
-import { AUTHENTICATE_API_URL } from "./constants";
+import { AUTHENTICATE_API_URL, SERVER_URL } from "./constants";
 import logo from "./logo.svg";
 import {
   GENERIC_ERROR,
@@ -14,6 +14,10 @@ import {
   USERNAME_PLACEHOLDER
 } from "./strings";
 
+/**
+ * This app is far from being a well-written React app, its sole purpose is to allow me showing
+ * some e2e testing characteristics
+ */
 function App() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -27,7 +31,7 @@ function App() {
     let response;
     const timeoutId = setTimeout(() => setLongWaiting(true), 1000);
     try {
-      response = await Axios.post(AUTHENTICATE_API_URL, {
+      response = await Axios.post(SERVER_URL + AUTHENTICATE_API_URL, {
         username,
         password
       });

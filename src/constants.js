@@ -1,1 +1,2 @@
-export const AUTHENTICATE_API_URL = "http://localhost:3001/api/authentication";
+export const SERVER_URL = "http://localhost:3001";
+export const AUTHENTICATE_API_URL = "/api/authentication";
