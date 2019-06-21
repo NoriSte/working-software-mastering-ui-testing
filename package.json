@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
@@ -11,11 +13,16 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "npx start-server-and-test start :3000 cy:run",
+    "test": "npx start-server-and-test start:server :3001 start:client",
     "eject": "react-scripts eject",
+    "// SERVER /////////": "",
+    "start:server": "node server/index.js",
     "// CYPRESS /////////": "",
+    "start:client": "npx start-server-and-test start :3000 cy:test",
     "cy:open": "cypress open",
-    "cy:run": "cypress run"
+    "cy:test": "cypress run",
+    "cy:test:integration": "cypress run --spec \"cypress/**/*.integration.*\"",
+    "cy:test:e2e": "cypress run --spec \"cypress/**/*.e2e.*\""
   },
   "eslintConfig": {
     "extends": "react-app"
