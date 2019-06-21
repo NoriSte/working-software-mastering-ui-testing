@@ -16,7 +16,7 @@
     "test": "npx start-server-and-test start:server :3001 start:client",
     "eject": "react-scripts eject",
     "// SERVER /////////": "",
-    "start:server": "node server/index.js",
+    "start:server": "nodemon server/index.js",
     "// CYPRESS /////////": "",
     "start:client": "npx start-server-and-test start :3000 cy:test",
     "cy:open": "cypress open",
@@ -45,6 +45,7 @@
     "cypress": "3.3.1",
     "cypress-skip-and-only-ui": "1.2.0",
     "cypress-watch-and-reload": "1.2.7",
+    "nodemon": "^1.19.1",
     "start-server-and-test": "1.9.1"
   }
 }
