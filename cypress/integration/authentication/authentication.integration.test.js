@@ -21,7 +21,7 @@ context("Authentication", () => {
     const password = "mysupersecretpassword";
     cy.route({
       method: "POST",
-      response: "fixture:authentication-success.json",
+      response: "fixture:authentication/authentication-success.json",
       url: `**${AUTHENTICATE_API_URL}`
     }).as("auth-xhr");
 
@@ -36,12 +36,8 @@ context("Authentication", () => {
       .click();
 
     cy.wait("@auth-xhr").then(xhr => {
-      expect(xhr)
-        .its("request.body")
-        .to.have.property("username", username);
-      expect(xhr)
-        .its("request.body")
-        .to.have.property("password", password);
+      expect(xhr.request.body).to.have.property("username", username);
+      expect(xhr.request.body).to.have.property("password", password);
     });
 
     cy.getByText(SUCCESS_FEEDBACK).should("be.visible");
