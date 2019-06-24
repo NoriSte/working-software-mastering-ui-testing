@@ -11,6 +11,7 @@ Status](https://img.shields.io/badge/build%20cron-weekly-44cc11.svg)](https://tr
 - [About this repository](#About-this-repository)
 - [How to play with it](#How-to-play-with-it)
 - [How to read it](#How-to-read-it)
+- [UI Testing Best Practices book](#UI-Testing-Best-Practices-book)
 
 <br />
 
@@ -52,3 +53,8 @@ it proposes you to launch these scripts automatically.
 - open the `cypress/integration/authentication.integration.test.js` and explore it
 - then, move to the `cypress/integration/authentication.e2e.test.js`
 - in the end: run the `npm test` command
+
+## UI Testing Best Practices book
+
+Do not forge to add a star to my (work in progress) [UI Testing Best
+Practices](https://github.com/NoriSte/ui-testing-best-practices) book on GitHub 😊
