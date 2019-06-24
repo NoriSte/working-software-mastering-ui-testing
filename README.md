@@ -18,6 +18,7 @@ I made this repository to follow up with the best practices I highlighted during
 
 ## About this repository
 - I bootstrapped this project with [create-react-app](https://facebook.github.io/create-react-app/docs/getting-started)
+- it contains a super-simple authentication form
 - it contains a fake server with artificial delays to simulate E2E testing slowness
 - it runs the tests in Travis too to show a complete UI Testing project
 - all the code is well commented, with a lot of links to the slide explanations
