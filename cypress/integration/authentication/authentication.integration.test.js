@@ -1,6 +1,9 @@
 /// <reference types="Cypress" />
 
 import { AUTHENTICATE_API_URL } from "../../../src/constants";
+// all the app strings are imported, they allow us to test the front-end app like the user is going
+// to consume it (through contents, not through selectors)
+// @see https://slides.com/noriste/working-software-2019-mastering-ui-testing#test-the-front-end-the-same-way-the-user-consumes-it
 import {
   GENERIC_ERROR,
   LOADING,
@@ -14,8 +17,15 @@ import {
 
 context("Authentication", () => {
   beforeEach(() => {
+    // just to leave more space to the Cypress test runner
     cy.viewport(300, 600);
+
+    // cy.server() allows you to intercept (and wait for) every fronte-end AJAX request
+    // @see https://docs.cypress.io/api/commands/server.html
     cy.server();
+
+    // visit a relative url, see the `cypres.json` file where the baseUrl is set
+    // @see https://docs.cypress.io/api/commands/visit.html#Syntax
     cy.visit("/");
   });
 
@@ -24,46 +34,69 @@ context("Authentication", () => {
 
   it("should work with the right credentials", () => {
     // intercepts every auth AJAX request and responds with the content of the
-    // authentication-success.json fixture
+    // authentication-success.json fixture. This is called server stubbing
     cy.route({
       method: "POST",
       response: "fixture:authentication/authentication-success.json",
       url: `**${AUTHENTICATE_API_URL}`
     }).as("auth-xhr");
 
+    // retrieves the elements to interact with by contents, the same way the user would do so
     cy.getByPlaceholderText(USERNAME_PLACEHOLDER)
+      // in case of failures, a lot of assertions drive you directly to the exact problem that
+      // occured, making test debugging useless
       .should("be.visible")
-      .type(`${username}`);
+      .type(username);
     cy.getByPlaceholderText(PASSWORD_PLACEHOLDER)
-      .should("be.visible")
-      .type(`${password}`);
+      .should("be.visible") // assertions FTW
+      .type(password);
     cy.getByText(LOGIN_BUTTON)
-      .should("be.visible")
+      .should("be.visible") // assertions FTW
       .click();
 
-    // checks the auth AJAX request payload
+    // the AJAX request is a deterministic event, it MUST happen for the front-end app to work!
+    // Asserting on deterministic events make your test more robust
     cy.wait("@auth-xhr").then(xhr => {
+      // a lot of times the front-end app does not work because of wrong communication with the
+      // back-end app, always assert on the request payload
       expect(xhr.request.body).to.have.property("username", username);
       expect(xhr.request.body).to.have.property("password", password);
     });
 
+    // finally, the user must see the feedback
     cy.getByText(SUCCESS_FEEDBACK).should("be.visible");
   });
 
+  // from now on, it will use a shared function to fill the form.
+  // Remember always to add simple abstractions because, test by test, you always need to slightly
+  // change the behavior to test every flow.
+  const fillFormAndClick = ({ username, password }) => {
+    cy.getByPlaceholderText(USERNAME_PLACEHOLDER)
+      .should("be.visible")
+      .type(username);
+    cy.getByPlaceholderText(PASSWORD_PLACEHOLDER)
+      .should("be.visible")
+      .type(password);
+  };
+
   it("should alert the user it the login lasts long", () => {
+    // it allows you to manage manually the front-end clock, see the `cy.tick` call
     cy.clock();
 
-    // intercepts every auth AJAX request and responds with an empty data, but after 20s
     cy.route({
       method: "POST",
+      // the response is not useful for this test, it has to test the long-awaiting feedback, not
+      // the feedback after the AJAX call completion
       response: {},
       url: `**${AUTHENTICATE_API_URL}`,
+      // adds a super-long delay to the AJAX response
       delay: 20000
     }).as("auth-xhr");
 
-    cy.getByPlaceholderText(USERNAME_PLACEHOLDER).type(`${username}`);
-    cy.getByPlaceholderText(PASSWORD_PLACEHOLDER).type(`${password}`);
+    fillFormAndClick({ username, password });
     cy.getByText(LOGIN_BUTTON).click();
+
+    // moves forward the front-end clock, it allows to manage to force `setTimeout` to happen in a while
     cy.tick(1000);
 
     cy.getByText(LOADING).should("be.visible");
@@ -79,8 +112,7 @@ context("Authentication", () => {
       status: 401
     }).as("auth-xhr");
 
-    cy.getByPlaceholderText(USERNAME_PLACEHOLDER).type(`${username}`);
-    cy.getByPlaceholderText(PASSWORD_PLACEHOLDER).type(`${password}`);
+    fillFormAndClick({ username, password });
     cy.getByText(LOGIN_BUTTON).click();
 
     cy.getByText(UNAUTHORIZED_ERROR).should("be.visible");
@@ -95,8 +127,7 @@ context("Authentication", () => {
       status: 500
     }).as("auth-xhr");
 
-    cy.getByPlaceholderText(USERNAME_PLACEHOLDER).type(`${username}`);
-    cy.getByPlaceholderText(PASSWORD_PLACEHOLDER).type(`${password}`);
+    fillFormAndClick({ username, password });
     cy.getByText(LOGIN_BUTTON).click();
 
     cy.getByText(GENERIC_ERROR).should("be.visible");

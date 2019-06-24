@@ -20,8 +20,10 @@ import {
  * some e2e testing characteristics
  */
 function App() {
+  // the controlled input states
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  // the AJAX state
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState("");
   const [success, setSuccess] = React.useState(false);
@@ -30,13 +32,16 @@ function App() {
   const onLoginClick = async () => {
     setLoading(true);
     let response;
+    // in case of big loading duration, it changes the user feedback
     const timeoutId = setTimeout(() => setLongWaiting(true), 1000);
     try {
+      // the real AJAX call
       response = await Axios.post(SERVER_URL + AUTHENTICATE_API_URL, {
         username,
         password
       });
     } catch (e) {
+      // 401 error means "unauthorized", it manages all the other error states as "generic" errors
       setError(e.response && e.response.status === 401 ? UNAUTHORIZED_ERROR : GENERIC_ERROR);
       setSuccess(false);
     }
@@ -52,12 +57,14 @@ function App() {
 
   return (
     <div className="App">
+      {/* some companies to thank 😊 */}
       <header className="App-header-ws">
         <img src={logoWS} className="App-logo" alt="logo" />
       </header>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
+      {/* the app content to be tested */}
       <section className="App-body">
         <span>Please type</span>
         <input
@@ -72,6 +79,7 @@ function App() {
           onChange={e => setPassword(e.target.value)}
         />
         <button onClick={onLoginClick}>{LOGIN_BUTTON}</button>
+        {/* AJAX loading feedbacks */}
         <span>
           {loading && LOADING}
           {success && SUCCESS_FEEDBACK}

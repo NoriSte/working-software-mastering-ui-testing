@@ -19,5 +19,7 @@ import "./commands";
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
+// relaunch the tests as soon as you save your source files
 require("cypress-watch-and-reload/support");
+// allows you to skip (or run only) some tests directly from the Cypress UI
 require("cypress-skip-and-only-ui/support");
