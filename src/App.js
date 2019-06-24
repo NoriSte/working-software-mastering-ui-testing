@@ -29,7 +29,7 @@ function App() {
   const [success, setSuccess] = React.useState(false);
   const [longWaiting, setLongWaiting] = React.useState(false);
 
-  const onLoginClick = async () => {
+  const authenticate = async (usr, pwd) => {
     setLoading(true);
     let response;
     // in case of big loading duration, it changes the user feedback
@@ -37,8 +37,8 @@ function App() {
     try {
       // the real AJAX call
       response = await Axios.post(SERVER_URL + AUTHENTICATE_API_URL, {
-        username,
-        password
+        username: usr,
+        password: pwd
       });
     } catch (e) {
       // 401 error means "unauthorized", it manages all the other error states as "generic" errors
@@ -54,6 +54,14 @@ function App() {
       setSuccess(true);
     }
   };
+
+  // Always add some shortcuts letting the UI test to run faster
+  // @see https://slides.com/noriste/working-software-2019-mastering-ui-testing#test-shortcuts
+  if (window.Cypress) {
+    window.cypressShortcuts = {
+      authenticate
+    };
+  }
 
   return (
     <div className="App">
@@ -78,7 +86,7 @@ function App() {
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-        <button onClick={onLoginClick}>{LOGIN_BUTTON}</button>
+        <button onClick={() => authenticate(username, password)}>{LOGIN_BUTTON}</button>
         {/* AJAX loading feedbacks */}
         <span>
           {loading && LOADING}

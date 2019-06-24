@@ -20,7 +20,8 @@ app.post("/api/authentication", function(req, res) {
   const { username, password } = req.body;
   const user = users.find(item => item.username === username);
   if (users && user && user.password === password) {
-    //  just to simulate E2E tests slowness
+    //  just to simulate E2E tests slowness// @see
+    //  https://slides.com/noriste/working-software-2019-mastering-ui-testing#ui-integration-tests
     setTimeout(() => res.send({ token: Date.now() }), 1000 + Math.random() * 2000);
   } else {
     res.status(401);
@@ -37,6 +38,7 @@ app.post("/e2e-tests/seed-data", function(req, res) {
   });
 
   //  just to simulate E2E tests slowness
+  //  https://slides.com/noriste/working-software-2019-mastering-ui-testing#ui-integration-tests
   setTimeout(() => res.send({}), 1000 + Math.random() * 2000);
 });
 
@@ -45,6 +47,7 @@ app.post("/e2e-tests/wipe-data", function(req, res) {
   users = [];
 
   //  just to simulate E2E tests slowness
+  //  https://slides.com/noriste/working-software-2019-mastering-ui-testing#ui-integration-tests
   setTimeout(() => res.send({}), 1000 + Math.random() * 2000);
 });
 

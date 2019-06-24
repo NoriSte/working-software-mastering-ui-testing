@@ -41,7 +41,9 @@ context("Authentication", () => {
     cy.visit("/");
   });
 
-  // this is a copy of the integration test but without server stubbing
+  // this is a copy of the integration test but without server stubbing.
+  // Remember to write a few E2E tests and a lot of integration ones
+  // @see https://slides.com/noriste/working-software-2019-mastering-ui-testing#ui-integration-tests
   it("should work with the right credentials", () => {
     // intercepts every auth AJAX request
     cy.route({
@@ -63,7 +65,9 @@ context("Authentication", () => {
       expect(xhr.request.body).to.have.property("username", username);
       expect(xhr.request.body).to.have.property("password", password);
       // since the integration tests already tested the front-end app, we use E2E tests to check the
-      // back-end app. It needs to ensure that the back-end app works and gets the correct response data
+      // back-end app. It needs to ensure that the back-end app works and gets the correct response
+      // data
+      // @see https://slides.com/noriste/working-software-2019-mastering-ui-testing#backend-contract
       expect(xhr.status).to.equal(200);
       expect(xhr.response.body).to.have.property("token");
     });

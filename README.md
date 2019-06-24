@@ -1,68 +1,45 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Mastering UI Testing
 
-## Available Scripts
+- [Goal of this repository](#Goal-of-this-repository)
+- [About this repository](#About-this-repository)
+- [How to play with it](#How-to-play-with-it)
+- [How to read it](#How-to-read-it)
 
-In the project directory, you can run:
+<br />
+<br />
 
-### `npm start`
+[![Mastering UI Testing](assets/header.jpg)](https://www.agilemovement.it/workingsoftware/)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+You can find the slides of the talk [here](https://slides.com/noriste/working-software-2019-mastering-ui-testing).
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Goal of this repository
+I made this repository to follow up with the best practices I highlighted during my talk at the
+[Working Software conference](https://www.agilemovement.it/workingsoftware/).
 
-### `npm test`
+## About this repository
+- I bootstrapped this project with [create-react-app](https://facebook.github.io/create-react-app/docs/getting-started)
+- it contains a fake server with artificial delays to simulate E2E testing slowness
+- it runs the tests in Travis too to show a complete UI Testing project
+- all the code is well commented, with a lot of links to the slide explanations
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## How to play with it
+There are four main commands:
+- `npm run start`: starts the (super simple) front-end app
+- `npm run start:server`: starts the (fake) back-end app
+- `npm run cy:open`: opens the Cypress UI
+- `npm test`: launches both the front-end and the back-end apps, and runs cypress in the non-visual
+  mode. Remember killing the manually launched apps since it uses the same ports
 
-### `npm run build`
+Please note: if you have the [Autolaunch
+extension](https://marketplace.visualstudio.com/items?itemName=philfontaine.autolaunch) for VS Code,
+it proposes you to launch this scripts automatically.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How to read it
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- read the [slides of the talk](https://slides.com/noriste/working-software-2019-mastering-ui-testing)
+- launch the front-end app and take a look at the `src/App.js` file
+- lauch both the back-end app and Cypress
+- launch the `authentication.integration.test.js` in Cypress and watch it running
+- open the `cypress/integration/authentication.integration.test.js` and explore it
+- then, move to the `cypress/integration/authentication.e2e.test.js`
+- in the end: run the `npm test` command

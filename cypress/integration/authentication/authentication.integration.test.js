@@ -3,7 +3,8 @@
 import { AUTHENTICATE_API_URL } from "../../../src/constants";
 // all the app strings are imported, they allow us to test the front-end app like the user is going
 // to consume it (through contents, not through selectors)
-// @see https://slides.com/noriste/working-software-2019-mastering-ui-testing#test-the-front-end-the-same-way-the-user-consumes-it
+// @see https://slides.com/noriste/working-software-2019-mastering-ui-testing#test-through-contents
+// @see https://slides.com/noriste/working-software-2019-mastering-ui-testing#frontend-contants
 import {
   GENERIC_ERROR,
   LOADING,
@@ -45,6 +46,7 @@ context("Authentication", () => {
     cy.getByPlaceholderText(USERNAME_PLACEHOLDER)
       // in case of failures, a lot of assertions drive you directly to the exact problem that
       // occured, making test debugging useless
+      // @see https://slides.com/noriste/working-software-2019-mastering-ui-testing#assert-frequently
       .should("be.visible")
       .type(username);
     cy.getByPlaceholderText(PASSWORD_PLACEHOLDER)
@@ -56,9 +58,11 @@ context("Authentication", () => {
 
     // the AJAX request is a deterministic event, it MUST happen for the front-end app to work!
     // Asserting on deterministic events make your test more robust
+    // @see https://slides.com/noriste/working-software-2019-mastering-ui-testing#deterministic-events
     cy.wait("@auth-xhr").then(xhr => {
       // a lot of times the front-end app does not work because of wrong communication with the
       // back-end app, always assert on the request payload
+      // @see https://slides.com/noriste/working-software-2019-mastering-ui-testing#backend-contract
       expect(xhr.request.body).to.have.property("username", username);
       expect(xhr.request.body).to.have.property("password", password);
     });
@@ -72,11 +76,14 @@ context("Authentication", () => {
   // change the behavior to test every flow.
   const fillFormAndClick = ({ username, password }) => {
     cy.getByPlaceholderText(USERNAME_PLACEHOLDER)
-      .should("be.visible")
+      .should("be.visible") // assertions FTW
       .type(username);
     cy.getByPlaceholderText(PASSWORD_PLACEHOLDER)
-      .should("be.visible")
+      .should("be.visible") // assertions FTW
       .type(password);
+    cy.getByText(LOGIN_BUTTON)
+      .should("be.visible") // assertions FTW
+      .click();
   };
 
   it("should alert the user it the login lasts long", () => {
@@ -94,7 +101,6 @@ context("Authentication", () => {
     }).as("auth-xhr");
 
     fillFormAndClick({ username, password });
-    cy.getByText(LOGIN_BUTTON).click();
 
     // moves forward the front-end clock, it allows to manage to force `setTimeout` to happen in a while
     cy.tick(1000);
@@ -113,7 +119,11 @@ context("Authentication", () => {
     }).as("auth-xhr");
 
     fillFormAndClick({ username, password });
-    cy.getByText(LOGIN_BUTTON).click();
+
+    cy.wait("@auth-xhr").then(xhr => {
+      expect(xhr.request.body).to.have.property("username", username);
+      expect(xhr.request.body).to.have.property("password", password);
+    });
 
     cy.getByText(UNAUTHORIZED_ERROR).should("be.visible");
   });
@@ -131,5 +141,23 @@ context("Authentication", () => {
     cy.getByText(LOGIN_BUTTON).click();
 
     cy.getByText(GENERIC_ERROR).should("be.visible");
+  });
+
+  // Other tests must not waste time with authentication, always allows them to authenticate as fast
+  // as they can, they will save precious seconds at every run.
+  // @see https://slides.com/noriste/working-software-2019-mastering-ui-testing#test-shortcuts
+  it("should expose a shortcut for fast authentication", () => {
+    cy.route({
+      method: "POST",
+      response: "fixture:authentication/authentication-success.json",
+      url: `**${AUTHENTICATE_API_URL}`
+    }).as("auth-xhr");
+
+    cy.window().invoke("cypressShortcuts.authenticate", username, password);
+
+    cy.wait("@auth-xhr").then(xhr => {
+      expect(xhr.request.body).to.have.property("username", username);
+      expect(xhr.request.body).to.have.property("password", password);
+    });
   });
 });

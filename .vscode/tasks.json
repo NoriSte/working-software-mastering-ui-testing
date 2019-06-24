@@ -1,0 +1,40 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Starts the front-end app",
+      "type": "shell",
+      "command": "npm run start",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "auto": true
+    },
+    {
+      "label": "Starts the back-end app",
+      "type": "shell",
+      "command": "npm run start:server",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "auto": true
+    },
+    {
+      "label": "Open Cypress",
+      "type": "shell",
+      "command": "npm run cy:open",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "auto": true
+    }
+  ]
+}
