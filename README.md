@@ -32,13 +32,13 @@ There are four main commands:
 
 Please note: if you have the [Autolaunch
 extension](https://marketplace.visualstudio.com/items?itemName=philfontaine.autolaunch) for VS Code,
-it proposes you to launch this scripts automatically.
+it proposes you to launch these scripts automatically.
 
 ## How to read it
 
 - read the [slides of the talk](https://slides.com/noriste/working-software-2019-mastering-ui-testing)
 - launch the front-end app and take a look at the `src/App.js` file
-- lauch both the back-end app and Cypress
+- launch both the back-end app and Cypress
 - launch the `authentication.integration.test.js` in Cypress and watch it running
 - open the `cypress/integration/authentication.integration.test.js` and explore it
 - then, move to the `cypress/integration/authentication.e2e.test.js`
