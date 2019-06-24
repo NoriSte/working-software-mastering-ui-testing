@@ -28,6 +28,8 @@ I made this repository to follow up with the best practices I highlighted during
 - it contains a fake server with artificial delays to simulate E2E testing slowness
 - it runs the tests in Travis too to show a complete UI Testing project
 - all the code is well commented, with a lot of links to the slide explanations
+- I wrote the front-end app with a outside-in approach writing the acceptance test at the beginning.
+  I have not tested it manually at all! Remember to use your [testing tool as your primary development tool](https://slides.com/noriste/working-software-2019-mastering-ui-testing#testing-tool-as-development-tool)
 
 ## How to play with it
 There are four main commands:
