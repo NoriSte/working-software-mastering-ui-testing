@@ -33,7 +33,7 @@ function App() {
     setLoading(true);
     let response;
     // in case of big loading duration, it changes the user feedback
-    const timeoutId = setTimeout(() => setLongWaiting(true), 1000);
+    const timeoutId = setTimeout(() => setLongWaiting(true), 3000);
     try {
       // the real AJAX call
       response = await Axios.post(SERVER_URL + AUTHENTICATE_API_URL, {
@@ -63,6 +63,9 @@ function App() {
     };
   }
 
+  //  I need to simulate a failure during the talk...
+  const test = document.location.search.substr(1).replace("test=", "");
+
   return (
     <div className="App">
       {/* some companies to thank 😊 */}
@@ -76,23 +79,29 @@ function App() {
       <section className="App-body">
         <span>Please type</span>
         <input
+          className="username-field"
           placeholder={USERNAME_PLACEHOLDER}
           value={username}
           onChange={e => setUsername(e.target.value)}
         />
         <input
+          className="password-field"
           placeholder={PASSWORD_PLACEHOLDER}
           type="password"
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-        <button onClick={() => authenticate(username, password)}>{LOGIN_BUTTON}</button>
+        <button className="login-button" onClick={() => authenticate(username, password)}>
+          {LOGIN_BUTTON}
+        </button>
         {/* AJAX loading feedbacks */}
         <span>
           {loading && LOADING}
-          {success && SUCCESS_FEEDBACK}
           {error}
         </span>
+        {success && test !== "too-many-test-failure-faults" && (
+          <span className="success">{success && SUCCESS_FEEDBACK}</span>
+        )}
         <span>{longWaiting && LONG_WAITING}</span>
       </section>
     </div>
