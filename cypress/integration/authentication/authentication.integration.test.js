@@ -25,7 +25,7 @@ context("Authentication", () => {
     // @see https://docs.cypress.io/api/commands/server.html
     cy.server();
 
-    // visit a relative url, see the `cypres.json` file where the baseUrl is set
+    // visit a relative url, see the `cypress.json` file where the baseUrl is set
     // @see https://docs.cypress.io/api/commands/visit.html#Syntax
     cy.visit("/");
   });
