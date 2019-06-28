@@ -53,10 +53,10 @@ context("Authentication", () => {
 
     cy.getByPlaceholderText(USERNAME_PLACEHOLDER)
       .should("be.visible")
-      .type(`${username}`);
+      .type("username");
     cy.getByPlaceholderText(PASSWORD_PLACEHOLDER)
       .should("be.visible")
-      .type(`${password}`);
+      .type("password");
     cy.getByText(LOGIN_BUTTON)
       .should("be.visible")
       .click();
