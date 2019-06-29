@@ -25,7 +25,7 @@ context("Authentication", () => {
   it("should work with the right credentials", () => {
     cy.route({
       method: "POST",
-      response: "fixture:authentication/authentication-success.json",
+      response: "fixture:authentication/success.json",
       url: `**${AUTHENTICATE_API_URL}`
     }).as("auth-xhr");
 

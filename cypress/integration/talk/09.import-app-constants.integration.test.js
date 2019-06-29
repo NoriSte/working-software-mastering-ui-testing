@@ -25,7 +25,7 @@ context("Authentication", () => {
       // ❤️
       url: `**${AUTHENTICATE_API_URL}`,
 
-      response: "fixture:authentication/authentication-success.json"
+      response: "fixture:authentication/success.json"
     }).as("auth-xhr");
 
     cy.visit("/");

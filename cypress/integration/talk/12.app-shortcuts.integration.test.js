@@ -15,7 +15,7 @@ context("Authentication", () => {
   it("should expose a shortcut for fast authentication", () => {
     cy.route({
       method: "POST",
-      response: "fixture:authentication/authentication-success.json",
+      response: "fixture:authentication/success.json",
       url: `**${AUTHENTICATE_API_URL}`
     }).as("auth-xhr");
 
