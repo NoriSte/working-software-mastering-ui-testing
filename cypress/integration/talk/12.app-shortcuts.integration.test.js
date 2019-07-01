@@ -19,11 +19,10 @@ context("Authentication", () => {
       url: `**${AUTHENTICATE_API_URL}`
     }).as("auth-xhr");
 
-    // Front-end shortcuts make the tests faster, you must not use the UI to reach the desired
-    // state, the UI is soooooo slow
-    // 🚀🚀🚀
     cy.window().invoke("cypressShortcuts.authenticate", username, password);
 
     cy.wait("@auth-xhr");
+
+    // cyu.visit("<THE_ROUTE_TO_BE_TESTED>"");
   });
 });

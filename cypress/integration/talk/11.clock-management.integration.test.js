@@ -10,27 +10,24 @@ import {
 } from "../../../src/strings";
 
 context("Authentication", () => {
-  beforeEach(() => {
-    cy.viewport(300, 600);
-    cy.server();
-    cy.visit("/");
-  });
+  beforeEach(() => {});
 
   const username = "stefano@conio.com";
   const password = "mysupersecretpassword";
 
   it("should alert the user it the login lasts long", () => {
-    // cypress gives you control over the browser clock
-    // 🤔
     cy.clock();
 
+    cy.server();
     cy.route({
       method: "POST",
       response: {},
       url: `**${AUTHENTICATE_API_URL}`,
+
       delay: 20000
     }).as("auth-xhr");
-
+    cy.viewport(300, 600);
+    cy.visit("/");
     cy.getByPlaceholderText(USERNAME_PLACEHOLDER)
       .should("be.visible")
       .type(username);
@@ -41,8 +38,6 @@ context("Authentication", () => {
       .should("be.visible")
       .click();
 
-    // and so, time-lapsing is possible, setTimeouts do not need to be awaited
-    // 😱😱😱
     cy.tick(3000);
 
     cy.getByText(LOADING).should("be.visible");

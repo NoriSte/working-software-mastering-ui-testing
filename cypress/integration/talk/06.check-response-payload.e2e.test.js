@@ -5,18 +5,12 @@ context("Authentication", () => {
   const password = "mysupersecretpassword";
 
   before(() => {
-    // wipe the server data
+    // e2e tests need real data
     cy.request("POST", `http://localhost:3001/e2e-tests/wipe-data`);
-
-    // add a temporary user
     cy.request("POST", `http://localhost:3001/e2e-tests/seed-data`, {
       username,
       password
     });
-  });
-
-  beforeEach(() => {
-    cy.viewport(300, 600);
   });
 
   it("should work with the right credentials", () => {
@@ -26,7 +20,7 @@ context("Authentication", () => {
       url: `**/api/authentication`,
       response: "fixture:authentication/success.json"
     }).as("auth-xhr");
-
+    cy.viewport(300, 600);
     cy.visit("/");
     cy.get(".username-field").type(username);
     cy.get(".password-field").type(password);
@@ -36,9 +30,6 @@ context("Authentication", () => {
       expect(xhr.request.body).to.have.property("username", username);
       expect(xhr.request.body).to.have.property("password", password);
 
-      // since the integration tests already tested the front-end app, we use E2E tests to check the
-      // back-end app. It needs to ensure that the back-end app works and gets the correct response
-      // data
       expect(xhr.status).to.equal(200);
       expect(xhr.response.body).to.have.property("token");
     });

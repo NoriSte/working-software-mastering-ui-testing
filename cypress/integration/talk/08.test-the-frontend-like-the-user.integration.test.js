@@ -4,10 +4,6 @@ context("Authentication", () => {
   const username = "stefano@conio.com";
   const password = "mysupersecretpassword";
 
-  beforeEach(() => {
-    cy.viewport(300, 600);
-  });
-
   it("should work with the right credentials", () => {
     cy.server();
     cy.route({
@@ -15,23 +11,17 @@ context("Authentication", () => {
       url: `**/api/authentication`,
       response: "fixture:authentication/success.json"
     }).as("auth-xhr");
-
+    cy.viewport(300, 600);
     cy.visit("/");
 
-    // the user consumes the UI through the contents, do the same! Debugging is easier too
-    // 😉
     cy.getByPlaceholderText("Your username")
       .should("be.visible")
       .type(username);
 
-    // the user consumes the UI through the contents, do the same! Debugging is easier too
-    // 😉
     cy.getByPlaceholderText("Your password")
       .should("be.visible")
       .type(password);
 
-    // the user consumes the UI through the contents, do the same! Debugging is easier too
-    // 😉
     cy.getByText("Login")
       .should("be.visible")
       .click();
@@ -41,8 +31,6 @@ context("Authentication", () => {
       expect(xhr.request.body).to.have.property("password", password);
     });
 
-    // the user consumes the UI through the contents, do the same! Debugging is easier too
-    // 😉
-    cy.getByText("Welcome back!");
+    cy.getByText("Welcome back!").should("be.visible");
   });
 });
