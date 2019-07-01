@@ -23,6 +23,6 @@ context("Authentication", () => {
 
     cy.wait("@auth-xhr");
 
-    // cyu.visit("<THE_ROUTE_TO_BE_TESTED>"");
+    // cy.visit("<THE_ROUTE_TO_BE_TESTED>"");
   });
 });
