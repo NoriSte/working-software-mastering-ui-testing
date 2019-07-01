@@ -6,7 +6,6 @@ Status](https://img.shields.io/badge/build%20cron-weekly-44cc11.svg)](https://tr
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 
-
 - [Goal of this repository](#Goal-of-this-repository)
 - [About this repository](#About-this-repository)
 - [How to play with it](#How-to-play-with-it)
@@ -20,10 +19,12 @@ Status](https://img.shields.io/badge/build%20cron-weekly-44cc11.svg)](https://tr
 You can find the slides of the talk [here](https://slides.com/noriste/working-software-2019-mastering-ui-testing).
 
 ## Goal of this repository
+
 I made this repository to follow up with the best practices I highlighted during my talk at the
 [Working Software conference](https://www.agilemovement.it/workingsoftware/).
 
 ## About this repository
+
 - I bootstrapped this project with [create-react-app](https://facebook.github.io/create-react-app/docs/getting-started)
 - it contains a super-simple authentication form
 - it contains a fake server with artificial delays to simulate E2E testing slowness
@@ -31,9 +32,12 @@ I made this repository to follow up with the best practices I highlighted during
 - all the code is well commented, with a lot of links to the slide explanations
 - I wrote the front-end app with a outside-in approach writing the acceptance test at the beginning.
   I have not tested it manually at all! Remember to use your [testing tool as your primary development tool](https://slides.com/noriste/working-software-2019-mastering-ui-testing#testing-tool-as-development-tool)
+- the `talk` branch is helpful only for the day of the conference, do not consider it
 
 ## How to play with it
+
 There are four main commands:
+
 - `npm run start`: starts the (super simple) front-end app
 - `npm run start:server`: starts the (fake) back-end app
 - `npm run cy:open`: opens the Cypress UI
