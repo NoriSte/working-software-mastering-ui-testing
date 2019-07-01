@@ -33,6 +33,7 @@ But if your testing browser stays always opened, leverage it! Apply a TDD outsid
 In one word: use Cypress as your main development tool, not just as a testing tool!
 
 Come back to the test: isn't it slow? More than ten seconds for a simple authentication test, why is it so slow? Well:
+
 - because it's an E2E test! An E2E test needs a working back-end, with a working database, it suffers from network slowness and it needs a lot of reliable data. As you can see in the code of the test, the first thing I do is to ask to the back-end to wipe the existing data and to add a new user, so the login flow is gonna work well
 - there is long waiting for the AJAX call to happen
 
@@ -50,14 +51,14 @@ As you can see, the test now takes less than eight seconds! And we all know how 
 The AJAX call is one of the deterministic events that an authentication form must pass through. You fill the form, it triggers an AJAX request and it gets a feedback. Always test your determinist events, that makes your test more robust.
 
 Anyway: eight seconds for a simple authentication test is way too much:
+
 - we need to test a lot of different fron-end paths
 - if an authentication test takes eight seconds, how much time a cart checkout could take?
-We must decrease this time... But how?
+  We must decrease this time... But how?
 
 Another really important best practice is: avoid writing full E2E tests! A full E2E test requires a working back-end with a working database with a lot of reliable data, all of that just to run a test! A real or mocked back-end is expensive to be written and to be maintained, let's consume some static fixtures instead of a real server!
 
 # 03
-
 
 Here you can see the result in terms of duration of the test. Less than two seconds for the same test. Obviously, this test is not a full E2E one, it's a UI integration test. I replaced the real server with a static fixture. Watch the test code, Cypress allows us not only to intercept and wait for the AJAX request but to stub it too!
 Every time that the front-end will make the AJAX call, Cypress acts as a server and responds immediately with the content of the fixture. That get the test running so fast! The AJAX call takes zero time and we do not need to seed the data in advance anymore.
@@ -67,10 +68,12 @@ You could see the static fixtures that the front-end is going to receive here. T
 # 04
 
 Now, what are the main goals of a test? The goals are:
+
 - check that the subject under test works as expected
 - tell us exactly where is the problem if the test fails
 
 Well, take a look at this failing test: it tries to get the element containing the success feedback from the page but the element did not appear. Never mind, we need to open the dev tools, inspect the front-end under test, and we need to debug it. There is room for a plethora of things that did not happen and caused the final feedback to not show up, for example:
+
 - does the login button trigger the action?
 - does the AJAX request start?
 - does the AJAX request has the right payloads?
@@ -99,18 +102,20 @@ One more big improvement to the test. Think about how the user consumes your fro
 Remember: the more your test consumes the front-end the same ways the consumer does, the more you are confident that your front-end works. Ad much as you can, you do not have to test your front-end as a programmer, test it as a user!
 
 This approach has one more big advantage, consider a failing test: if you consume your application through selectors and an interacting with an element fails, you have three possible issues:
+
 - the element has not the attribute
 - the element has the attribute but its value is not aligned with the test one
 - the element does not exist, or it's invisible
-So, you need to launch the test, pause it when it fails, and inspect the DOM.
+  So, you need to launch the test, pause it when it fails, and inspect the DOM.
 
 Instead, if you consume the front-end through contents, most of the times you just need a screenshot of your front-end to understand what's wrong. And guess? Cypress takes a screenshot automatically when a test fails!!
 
 I know that's not always so easy, but remember to consume your app:
+
 - through contents as a first choice
 - through aria-attributes as a second choice
 - through test-id attributes as the last choice
-And never, never, consume is through class-based or id-based selectors! Because if every attribute as a role, classes are for CSS, ids are for JavaScript... They can change for purposes that are not related to testing and you can face a false positive, a failing test while the app works.
+  And never, never, consume is through class-based or id-based selectors! Because if every attribute as a role, classes are for CSS, ids are for JavaScript... They can change for purposes that are not related to testing and you can face a false positive, a failing test while the app works.
 
 Take a look at the test, I now consume front-end elements through contents instead of selectors.
 
@@ -130,6 +135,7 @@ The same is for all the error paths.
 # 11
 
 I wanna show you one more Cypress utility, clock management. The front-end shows the user feedback if the AJAX request takes long. It shows a "be patient" string to the user if the AJAX request lasts more than three seconds. Obviously, testing this path is long but Cypress allows us to control the browser clock. See the test code:
+
 - I start the `cy.clock` object
 - I add an artificial delay to the stubbed request
 - I move forward the browser clock by 3 seconds with `cy.tick`
@@ -141,13 +147,14 @@ As you can see, the test lasts more less like a standard test. And take a look a
 Last but not least: we'are testing the authentication flow and we need to interact with the UI. But in a real application, every test needs to be authenticated and sessions are not shared between the tests. The first choice could be to authenticating through the UI before every test but, even is Cypress makes it fast, reaching a state through the UI is not a great choice.
 
 You should instead consider exporting some shortcuts directly from the front-end. So you can get the test authenticated in a while. Consuming some front-end shortcuts allows you to:
+
 - avoid duplicating flow paths: the front-end code knows how to get authenticated, do not put this logic into the test too. You could do it to speed up your test but you end up with two different logic to maintain
 - make your test faster and reaching the starting pèoint of the test in a while
 
 Take a look at the code of the test, you could put this code before every test to get them authenticated. To do so you can add a condition in your front-end code, "if window.cypress is defined, then add the shortcuts". Or you can use a webpack plugin to remove the shortcut before the production build. Choose your way but front-end shortcuts will save your testing life.
 
-
 That's all with the code, two common questions that I hear usually :
+
 - does Cypress support only Chrome? Yes! They're working on cross-browser support but, until now, only Chrome is supported. But remember that cross-browser support is more important for visual regression testing and there are a lot of existing services that do so. Applitools, Percy, Chromatic, etc. And they can be integrated with Cypress too
 - is Cypress free? Yes, it's free and open-source, you have to pay only for advanced stuff like test video hosting, etc.
 
