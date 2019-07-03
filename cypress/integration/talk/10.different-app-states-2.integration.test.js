@@ -94,7 +94,7 @@ context("Authentication", () => {
     cy.getByText(UNAUTHORIZED_ERROR).should("be.visible");
   });
 
-  it("should alert the user it the server does not work", () => {
+  it.only("should alert the user it the server does not work", () => {
     cy.route({
       method: "POST",
       response: {},

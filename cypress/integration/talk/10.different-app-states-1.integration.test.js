@@ -9,22 +9,20 @@ import {
 } from "../../../src/strings";
 
 context("Authentication", () => {
-  beforeEach(() => {
-    cy.viewport(300, 600);
-    cy.server();
-    cy.visit("/");
-  });
-
   const username = "stefano@conio.com";
   const password = "mysupersecretpassword";
 
   it("should alert the user it the credentials are wrong", () => {
+    cy.server();
     cy.route({
       method: "POST",
+      response: {},
       url: `**${AUTHENTICATE_API_URL}`,
-
       status: 401
     }).as("auth-xhr");
+
+    cy.viewport(300, 600);
+    cy.visit("/");
 
     cy.getByPlaceholderText(USERNAME_PLACEHOLDER)
       .should("be.visible")
