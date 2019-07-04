@@ -72,3 +72,4 @@ Practices](https://github.com/NoriSte/ui-testing-best-practices) book on GitHub 
 - show cypress and VSCode side-by-side on the same screen
 - prepare the browser opened on the slides
 - if you need, take a look at the `transcription.md` file on the `talk` branch
+- take a look at the ["How to Talk to Developers"](https://www.youtube.com/watch?v=l9JXH7JPjR4) talk by Ben Orenstein
