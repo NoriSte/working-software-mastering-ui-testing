@@ -11,6 +11,7 @@ Status](https://img.shields.io/badge/build%20cron-weekly-44cc11.svg)](https://tr
 - [How to play with it](#How-to-play-with-it)
 - [How to read it](#How-to-read-it)
 - [UI Testing Best Practices book](#UI-Testing-Best-Practices-book)
+- [Notes for the talk](#Notes-for-the-talk)
 
 <br />
 
@@ -62,3 +63,12 @@ it proposes you to launch these scripts automatically.
 
 Do not forge to add a star to my (work in progress) [UI Testing Best
 Practices](https://github.com/NoriSte/ui-testing-best-practices) book on GitHub 😊
+
+## Notes for the talk
+
+- checkout the `talk` branch
+- launch all the scripts except for `npx cypress open`
+- you will launch `npx cypress open` as soon as you start showing the code at the talk
+- show cypress and VSCode side-by-side on the same screen
+- prepare the browser opened on the slides
+- if you need, take a look at the `transcription.md` file on the `talk` branch
