@@ -45,7 +45,7 @@
     "cypress": "3.4.1",
     "cypress-skip-and-only-ui": "1.2.4",
     "cypress-watch-and-reload": "1.2.11",
-    "nodemon": "1.19.3",
+    "nodemon": "1.19.4",
     "start-server-and-test": "1.10.6"
   }
 }
