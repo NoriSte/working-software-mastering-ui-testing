@@ -43,7 +43,7 @@
     "@cypress/browserify-preprocessor": "2.1.1",
     "@testing-library/cypress": "4.2.0",
     "cypress": "3.6.1",
-    "cypress-skip-and-only-ui": "1.2.5",
+    "cypress-skip-and-only-ui": "1.2.6",
     "cypress-watch-and-reload": "1.2.12",
     "nodemon": "1.19.4",
     "start-server-and-test": "1.10.6"
