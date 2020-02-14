@@ -42,7 +42,7 @@
   "devDependencies": {
     "@cypress/browserify-preprocessor": "2.1.4",
     "@testing-library/cypress": "4.2.0",
-    "cypress": "4.0.1",
+    "cypress": "4.0.2",
     "cypress-skip-and-only-ui": "1.2.6",
     "cypress-watch-and-reload": "1.2.13",
     "nodemon": "2.0.2",
