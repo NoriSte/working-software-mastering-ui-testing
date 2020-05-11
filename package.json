@@ -40,7 +40,7 @@
     "react-scripts": "3.4.1"
   },
   "devDependencies": {
-    "@cypress/browserify-preprocessor": "2.1.4",
+    "@cypress/browserify-preprocessor": "2.2.4",
     "@testing-library/cypress": "4.2.0",
     "cypress": "4.5.0",
     "cypress-skip-and-only-ui": "1.2.6",
