@@ -37,7 +37,7 @@
     "express": "4.17.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-scripts": "3.4.2"
+    "react-scripts": "3.4.3"
   },
   "devDependencies": {
     "@cypress/browserify-preprocessor": "3.0.1",
