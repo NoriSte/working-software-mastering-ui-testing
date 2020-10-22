@@ -35,8 +35,8 @@
     "axios": "0.20.0",
     "cors": "2.8.5",
     "express": "4.17.1",
-    "react": "17.0.0",
-    "react-dom": "17.0.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "react-scripts": "3.4.4"
   },
   "devDependencies": {
