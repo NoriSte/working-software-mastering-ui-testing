@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@cypress/browserify-preprocessor": "3.0.1",
-    "@testing-library/cypress": "4.2.0",
+    "@testing-library/cypress": "7.0.6",
     "cypress": "5.6.0",
     "cypress-skip-and-only-ui": "1.2.10",
     "cypress-watch-and-reload": "1.2.18",
