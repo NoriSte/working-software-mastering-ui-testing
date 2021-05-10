@@ -1,9 +1,5 @@
 Mastering UI Testing
 
-[![Build Status](https://travis-ci.com/NoriSte/working-software-mastering-ui-testing.svg?branch=master)](https://travis-ci.com/NoriSte/working-software-mastering-ui-testing)
-[![Build
-Status](https://img.shields.io/badge/build%20cron-weekly-44cc11.svg)](https://travis-ci.com/NoriSte/working-software-mastering-ui-testing)
-[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 
 - [Goal of this repository](#Goal-of-this-repository)
